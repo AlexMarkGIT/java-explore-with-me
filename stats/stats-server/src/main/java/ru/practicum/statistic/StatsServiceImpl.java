@@ -25,13 +25,13 @@ public class StatsServiceImpl implements StatsService {
     public List<StatsDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
 
         if (uris.isEmpty()) {
-            if(unique) {
+            if (unique) {
                 return statsRepository.findAllUniqueStats(start, end);
             } else {
                 return statsRepository.findAllNotUniqueStats(start, end);
             }
         } else {
-            if(unique) {
+            if (unique) {
                 return statsRepository.findAllUniqueStatsByUris(start, end, uris);
             } else {
                 return statsRepository.findAllNotUniqueStatsByUris(start, end, uris);
