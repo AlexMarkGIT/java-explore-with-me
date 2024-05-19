@@ -6,10 +6,18 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+
 @SpringBootApplication
 public class StatsApp {
     public static void main(String[] args) {
-        SpringApplication.run(StatsApp.class, args);
+
+        SpringApplication application = new SpringApplication(StatsApp.class);
+
+        application.setDefaultProperties(Collections
+                .singletonMap("server.port", "9090"));
+
+        application.run(args);
     }
 
     @Bean

@@ -2,8 +2,6 @@ package ru.practicum;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,13 +17,10 @@ import java.util.Map;
 public class StatsClient {
 
     private final RestTemplate restTemplate;
-    private final String serverUrl;
     private final ObjectMapper objectMapper;
 
-    @Autowired
-    public StatsClient(RestTemplate restTemplate, @Value("${stats-server.url") String serverUrl) {
+    public StatsClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.serverUrl = serverUrl;
         this.objectMapper = new ObjectMapper();
     }
 
@@ -35,7 +30,7 @@ public class StatsClient {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        restTemplate.exchange(serverUrl + "/hit",
+        restTemplate.exchange("http://localhost:9090/hit",
                 HttpMethod.POST,
                 new HttpEntity<>(hitDto, httpHeaders),
                 HitDto.class);
@@ -51,7 +46,7 @@ public class StatsClient {
         requestParameters.put("unique", unique);
 
         ResponseEntity<String> responseEntity = restTemplate
-                .getForEntity(serverUrl + "/stats?start={start}&end={end}&uris={uris}&unique={unique}",
+                .getForEntity("http://localhost:9090/stats?start={start}&end={end}&uris={uris}&unique={unique}",
                         String.class,
                         requestParameters);
 
