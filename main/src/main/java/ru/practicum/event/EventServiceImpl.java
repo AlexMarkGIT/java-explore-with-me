@@ -148,9 +148,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> getAllByAdmin(List<Long> users,
+    public List<EventDto> getAllByAdmin(Long users,
                                         EventState states,
-                                        List<Long> categories,
+                                        Long categories,
                                         LocalDateTime rangeStart,
                                         LocalDateTime rangeEnd,
                                         Integer from,

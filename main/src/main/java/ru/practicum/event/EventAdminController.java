@@ -23,9 +23,9 @@ public class EventAdminController {
     private final EventService eventService;
 
     @GetMapping
-    public List<EventDto> getAll(@RequestParam(required = false) List<Long> users,
+    public List<EventDto> getAll(@RequestParam(required = false) Long users,
                                  @RequestParam(required = false) EventState states,
-                                 @RequestParam(required = false) List<Long> categories,
+                                 @RequestParam(required = false) Long categories,
                                  @RequestParam(required = false)
                                      @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
                                  @RequestParam(required = false)

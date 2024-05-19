@@ -19,9 +19,9 @@ public interface EventService {
 
     List<EventShortDto>  getAllByInitiator(Long userId, Integer from, Integer size);
 
-    List<EventDto> getAllByAdmin(List<Long> users,
+    List<EventDto> getAllByAdmin(Long users,
                                  EventState states,
-                                 List<Long> categories,
+                                 Long categories,
                                  LocalDateTime rangeStart,
                                  LocalDateTime rangeEnd,
                                  Integer from,

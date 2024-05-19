@@ -29,8 +29,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "or (lower(e.description) like concat('%', lower(?1), '%')))) " +
             "and (?2 is null or e.category.id in ?2) " +
             "and (?3 is null or e.paid = ?3) " +
-            "and (?4 is null or e.eventDate > ?4) " +
-            "and (?5 is null or e.eventDate < ?5) " +
+            "and (cast(?4 as timestamp) is null or e.eventDate > ?4) " +
+            "and (cast(?5 as timestamp) is null or e.eventDate < ?5) " +
             "and (?6 = false " +
             "or ((?6 = true " +
             "and e.participantLimit > " +
@@ -48,11 +48,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "where (?1 is null or e.initiator.id in ?1) " +
             "and (?2 is null or e.state in ?2) " +
             "and (?3 is null or e.category.id in ?3) " +
-            "and (?4 is null or e.eventDate > ?4) " +
-            "and (?5 is null or e.eventDate < ?5)")
-    List<Event> getAllEventsByParamsByAdmin(List<Long> users,
+            "and (cast(?4 as timestamp) is null or e.eventDate > ?4) " +
+            "and (cast(?5 as timestamp) is null or e.eventDate < ?5)")
+    List<Event> getAllEventsByParamsByAdmin(Long users,
                                             String states,
-                                            List<Long> categories,
+                                            Long categories,
                                             LocalDateTime rangeStart,
                                             LocalDateTime rangeEnd,
                                             Pageable pageable);
