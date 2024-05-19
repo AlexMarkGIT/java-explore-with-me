@@ -20,13 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto create(UserDto userDto) {
-        if (userRepository.existsByName(userDto.getName())) {
-            throw new AlreadyExistException("пльзователь с таким именем уже существует");
-        }
-        if (userRepository.existsByEmail(userDto.getEmail())) {
-            throw new AlreadyExistException("пользователь с такой почтой уже существует");
-        }
-
+        validateUser(userDto);
         User user = userMapper.toEntity(userDto);
         return userMapper.toDto(userRepository.save(user));
     }
@@ -48,5 +42,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    private void validateUser(UserDto userDto) {
+        if (userRepository.existsByName(userDto.getName())) {
+            throw new AlreadyExistException("пльзователь с таким именем уже существует");
+        }
+        if (userRepository.existsByEmail(userDto.getEmail())) {
+            throw new AlreadyExistException("пользователь с такой почтой уже существует");
+        }
     }
 }

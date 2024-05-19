@@ -79,6 +79,13 @@ public class EventServiceImpl implements EventService {
         Event event = eventRepository.findEventByIdAndInitiator(eventId, user)
                 .orElseThrow(() -> new NotFoundException("такого события не существует"));
 
+        if (dto.getCategory() != null && !dto.getCategory().equals(event.getCategory().getId())) {
+            Category newCategory = categoryRepository.findById(dto.getCategory())
+                    .orElseThrow(() -> new NotFoundException("такая категория не найдена"));
+
+            event.setCategory(newCategory);
+        }
+
         if (event.getState().equals(EventState.PUBLISHED)) {
             throw new ConflictException("нельзя изменять уже опубликованное событие");
         }
@@ -108,6 +115,13 @@ public class EventServiceImpl implements EventService {
 
         if (!event.getState().equals(EventState.PENDING)) {
             throw new ConflictException("нельзя изменять опубликованное или отмененное событие");
+        }
+
+        if (dto.getCategory() != null && !dto.getCategory().equals(event.getCategory().getId())) {
+            Category newCategory = categoryRepository.findById(dto.getCategory())
+                    .orElseThrow(() -> new NotFoundException("такая категория не найдена"));
+
+            event.setCategory(newCategory);
         }
 
         if (dto.getStateAction() != null) {
