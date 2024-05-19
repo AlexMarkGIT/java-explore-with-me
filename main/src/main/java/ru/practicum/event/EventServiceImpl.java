@@ -19,7 +19,6 @@ import ru.practicum.event.model.EventMapper;
 import ru.practicum.exception.BadRequestException;
 import ru.practicum.exception.ConflictException;
 import ru.practicum.exception.NotFoundException;
-import ru.practicum.request.RequestRepository;
 import ru.practicum.user.UserRepository;
 import ru.practicum.user.model.User;
 

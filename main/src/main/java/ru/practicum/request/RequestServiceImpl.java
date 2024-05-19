@@ -32,6 +32,7 @@ public class RequestServiceImpl implements RequestService {
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
     private final RequestMapper requestMapper;
+
     @Override
     public RequestDto create(Long userId, Long eventId) {
 

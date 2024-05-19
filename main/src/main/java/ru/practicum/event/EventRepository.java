@@ -16,9 +16,13 @@ import java.util.Optional;
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     Boolean existsByCategoryId(Long catId);
+
     Optional<Event> findEventByIdAndInitiator(Long eventId, User user);
+
     List<Event> findAllByInitiator(User user, Pageable pageable);
+
     Optional<Event> findByIdAndState(Long eventId, EventState eventState);
+
     @Query("select e from Event e " +
             "where ((?1 is null) " +
             "or ((lower(e.annotation) like concat('%', lower(?1), '%')) " +
@@ -52,6 +56,4 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                                             LocalDateTime rangeStart,
                                             LocalDateTime rangeEnd,
                                             Pageable pageable);
-
-
 }

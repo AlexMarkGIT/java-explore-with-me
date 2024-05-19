@@ -12,9 +12,13 @@ import java.util.Optional;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
     Boolean existsByEventAndRequester(Event event, User requester);
+
     Optional<Request> findByRequesterIdAndId(Long userId, Long requestId);
+
     List<Request> findAllByRequesterId(Long userId);
+
     List<Request> findAllByEvent(Event event);
+
     List<Request> findByEventIdAndIdIn(Long eventId, List<Long> ids);
 
 }

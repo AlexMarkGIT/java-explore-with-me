@@ -19,7 +19,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(columnDefinition="TEXT", length = 2000)
+    @Column(columnDefinition = "TEXT", length = 2000)
     private String annotation;
     @OneToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -28,7 +28,7 @@ public class Event {
     private Long confirmedRequests;
     @Column(name = "created_on")
     private LocalDateTime createdOn;
-    @Column(columnDefinition="TEXT", length = 7000)
+    @Column(columnDefinition = "TEXT", length = 7000)
     private String description;
     @Column(name = "event_date")
     private LocalDateTime eventDate;
