@@ -11,13 +11,7 @@ import java.util.Collections;
 @SpringBootApplication
 public class StatsApp {
     public static void main(String[] args) {
-
-        SpringApplication application = new SpringApplication(StatsApp.class);
-
-        application.setDefaultProperties(Collections
-                .singletonMap("server.port", "9090"));
-
-        application.run(args);
+        SpringApplication.run(StatsApp.class, args);
     }
 
     @Bean

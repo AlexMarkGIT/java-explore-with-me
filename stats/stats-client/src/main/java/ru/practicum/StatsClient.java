@@ -2,6 +2,7 @@ package ru.practicum;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -18,10 +19,12 @@ public class StatsClient {
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final String serverUrl;
 
-    public StatsClient(RestTemplate restTemplate) {
+    public StatsClient(@Value("${stats-server.url}") String serverUrl, RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.objectMapper = new ObjectMapper();
+        this.serverUrl = serverUrl;
     }
 
     public void post(HitDto hitDto) {
@@ -30,7 +33,7 @@ public class StatsClient {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        restTemplate.exchange("http://localhost:9090/hit",
+        restTemplate.exchange(serverUrl +"/hit",
                 HttpMethod.POST,
                 new HttpEntity<>(hitDto, httpHeaders),
                 HitDto.class);
@@ -46,7 +49,7 @@ public class StatsClient {
         requestParameters.put("unique", unique);
 
         ResponseEntity<String> responseEntity = restTemplate
-                .getForEntity("http://localhost:9090/stats?start={start}&end={end}&uris={uris}&unique={unique}",
+                .getForEntity(serverUrl + "/stats?start={start}&end={end}&uris={uris}&unique={unique}",
                         String.class,
                         requestParameters);
 
