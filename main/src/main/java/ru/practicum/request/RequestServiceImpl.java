@@ -99,7 +99,7 @@ public class RequestServiceImpl implements RequestService {
         User participant = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("такого пользователя не существует"));
 
-        List<Request> requests = requestRepository.findAllByRequesterId(userId);
+        List<Request> requests = requestRepository.findAllByRequesterId(participant.getId());
 
         return requestMapper.toDtoList(requests);
     }

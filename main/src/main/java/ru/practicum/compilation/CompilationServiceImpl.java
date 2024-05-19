@@ -10,10 +10,8 @@ import ru.practicum.compilation.dto.CompilationUpdateDto;
 import ru.practicum.compilation.model.Compilation;
 import ru.practicum.compilation.model.CompilationMapper;
 import ru.practicum.event.EventRepository;
-import ru.practicum.event.model.Event;
 import ru.practicum.exception.NotFoundException;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 

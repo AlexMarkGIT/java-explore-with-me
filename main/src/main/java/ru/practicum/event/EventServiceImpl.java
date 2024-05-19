@@ -1,6 +1,5 @@
 package ru.practicum.event;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,7 +24,6 @@ import ru.practicum.user.UserRepository;
 import ru.practicum.user.model.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.awt.desktop.QuitEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -37,7 +35,6 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
-    private final RequestRepository requestRepository;
     private final EventMapper eventMapper;
     private final StatsClient statsClient;
 
@@ -261,7 +258,7 @@ public class EventServiceImpl implements EventService {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        HitDto hitDto = new HitDto().builder()
+        HitDto hitDto = HitDto.builder()
                 .app("main-service")
                 .uri("/events")
                 .ip(request.getRemoteAddr())
