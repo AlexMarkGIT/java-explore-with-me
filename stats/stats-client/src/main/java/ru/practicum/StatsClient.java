@@ -33,7 +33,7 @@ public class StatsClient {
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        restTemplate.exchange(serverUrl +"/hit",
+        restTemplate.exchange(serverUrl + "/hit",
                 HttpMethod.POST,
                 new HttpEntity<>(hitDto, httpHeaders),
                 HitDto.class);
