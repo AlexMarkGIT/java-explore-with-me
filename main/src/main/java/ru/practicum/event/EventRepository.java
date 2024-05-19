@@ -37,7 +37,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "(select count(*) from Request as r where r.event.id = e.id ))) " +
             "or (e.participantLimit > 0 ))")
     List<Event> getAllEventsByParams(String text,
-                              List<Long> categories,
+                              Long categories,
                               Boolean paid,
                               LocalDateTime rangeStart,
                               LocalDateTime rangeEnd,

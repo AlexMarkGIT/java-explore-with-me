@@ -173,7 +173,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDto> getAllByUser(String text,
-                                       List<Long> categories,
+                                       Long categories,
                                        Boolean paid,
                                        LocalDateTime rangeStart,
                                        LocalDateTime rangeEnd,

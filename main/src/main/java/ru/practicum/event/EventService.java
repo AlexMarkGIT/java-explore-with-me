@@ -28,7 +28,7 @@ public interface EventService {
                                  Integer size);
 
     List<EventDto> getAllByUser(String text,
-                                List<Long> categories,
+                                Long categories,
                                 Boolean paid,
                                 LocalDateTime rangeStart,
                                 LocalDateTime rangeEnd,
