@@ -2,7 +2,6 @@ package ru.practicum;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,13 @@ import java.util.Map;
 public class StatsClient {
 
     private final RestTemplate restTemplate;
-    private final String serverUrl;
     private final ObjectMapper objectMapper;
+    private final String serverUrl;
 
-    @Autowired
-    public StatsClient(RestTemplate restTemplate, @Value("${stats-server.url") String serverUrl) {
+    public StatsClient(@Value("${stats-server.url}") String serverUrl, RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.serverUrl = serverUrl;
         this.objectMapper = new ObjectMapper();
+        this.serverUrl = serverUrl;
     }
 
     public void post(HitDto hitDto) {
