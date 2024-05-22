@@ -91,8 +91,8 @@
 							"    pm.expect(target.created).to.not.be.null;\r",
 							"    pm.expect(target.published).to.be.null;\r",
 							"    pm.expect(target.status).equal('PENDING');\r",
-							"    pm.expect(target.commentator).equal(pm.collectionVariables.get('uid'));\r",
-							"    pm.expect(target.event).equal(pm.collectionVariables.get('eid'));\r",
+							"    pm.expect(target.commentator).equal(pm.collectionVariables.get('uid').toString());\r",
+							"    pm.expect(target.event).equal(pm.collectionVariables.get('eid').toString());\r",
 							"});\r",
 							"\r",
 							"pm.collectionVariables.set('commid', target.id);\r",
@@ -143,33 +143,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"const main = async () => {\r",
-							"\r",
-							"    try {\r",
-							"        let oldEventId = pm.collectionVariables.get('eid');\r",
-							"        let newEventId = (oldEventId + 1);\r",
-							"        pm.collectionVariables.set('eid', newEventId);\r",
-							"    } catch(err) {\r",
-							"        console.error(\"Ошибка при подготовке тестовых данных.\", err);\r",
-							"    }\r",
-							"\r",
-							"};\r",
-							"\r",
-							"const interval = setInterval(() => {}, 1000);\r",
-							"\r",
-							"setTimeout(async () => \r",
-							"    {\r",
-							"        try {\r",
-							"            // выполняем наш скрипт\r",
-							"            await main();\r",
-							"        } catch (e) {\r",
-							"            console.error(e);\r",
-							"        } finally {\r",
-							"            clearInterval(interval);\r",
-							"        }\r",
-							"    },  \r",
-							"    100 \r",
-							");"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -181,11 +155,7 @@
 						"exec": [
 							"pm.test(\"Код статуса должен быть 404\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
-							"});\r",
-							"\r",
-							"let eidOld = pm.collectionVariables.get('eid') - 1;\r",
-							"\r",
-							"pm.collectionVariables.set('eid', eidOld);"
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -197,7 +167,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"event\": {{eid}},\r\n    \"content\": \"{{randomText}}\"\r\n}",
+					"raw": "{\r\n    \"event\": 100500,\r\n    \"content\": \"{{randomText}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -273,7 +243,7 @@
 							"const target = pm.response.json();\r",
 							"\r",
 							"pm.test(\"Данные в ответе должны соответветствовать запросу\", function() {\r",
-							"    pm.expect(target.id).equal(pm.collectionVariables.get('commid'));\r",
+							"    pm.expect(target.id).equal(pm.collectionVariables.get('commid').toString());\r",
 							"    pm.expect(target.content).equal(pm.collectionVariables.get('randomText'));\r",
 							"});"
 						],
