@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatsDto;
 import ru.practicum.statistic.exception.TimePeriodException;
+import ru.practicum.statistic.utils.Pattern;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ public class StatsController {
 
         log.info("Получен запрос получения статистики");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATETIME);
 
         LocalDateTime startTime = LocalDateTime.parse(start, formatter);
         LocalDateTime endTime = LocalDateTime.parse(end, formatter);

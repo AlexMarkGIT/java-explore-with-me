@@ -1,4 +1,4 @@
-package ru.practicum.request.dto;
+package ru.practicum.comment.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class RequestDto {
-    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
-    private LocalDateTime created;
-    private Long event;
+@AllArgsConstructor
+public class CommentPublicDto {
     private Long id;
-    private Long requester;
-    private String status;
+    private String content;
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
+    private LocalDateTime published;
+    private Long commentator;
+    private Long event;
 }
