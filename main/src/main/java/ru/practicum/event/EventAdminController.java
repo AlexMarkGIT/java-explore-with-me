@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.event.dto.EventUpdateAdminDto;
 import ru.practicum.event.dto.EventDto;
 import ru.practicum.event.enums.EventState;
+import ru.practicum.utils.Pattern;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -27,9 +28,9 @@ public class EventAdminController {
                                  @RequestParam(required = false) EventState states,
                                  @RequestParam(required = false) Long categories,
                                  @RequestParam(required = false)
-                                     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
+                                     @DateTimeFormat(pattern = Pattern.DATETIME) LocalDateTime rangeStart,
                                  @RequestParam(required = false)
-                                     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+                                     @DateTimeFormat(pattern = Pattern.DATETIME) LocalDateTime rangeEnd,
                                  @RequestParam(required = false, defaultValue = "0") Integer from,
                                  @RequestParam(required = false, defaultValue = "10") Integer size) {
         log.info("\n\nполучение событий админом\n");

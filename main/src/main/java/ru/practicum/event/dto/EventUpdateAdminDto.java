@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.practicum.event.enums.AdminStateAction;
+import ru.practicum.utils.Pattern;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
@@ -22,7 +23,7 @@ public class EventUpdateAdminDto {
     private Long category;
     @Size(min = 20, max = 7000)
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
     @FutureOrPresent
     private LocalDateTime eventDate;
     private Location location;

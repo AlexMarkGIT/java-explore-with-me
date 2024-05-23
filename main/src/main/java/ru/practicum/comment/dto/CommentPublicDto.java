@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.practicum.utils.Pattern;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class CommentPublicDto {
     private Long id;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
     private LocalDateTime published;
     private Long commentator;
     private Long event;

@@ -27,17 +27,7 @@ public class CommentPrivateController {
                              @PathVariable Long userId) {
 
         log.info("\nсоздание комментария\n");
-        System.out.println("\n");
-        System.out.println(dto);
-        System.out.println("\n");
-
-        CommentDto resp = commentService.create(dto, userId);
-
-        System.out.println("\n");
-        System.out.println(resp);
-        System.out.println("\n");
-
-        return resp;
+        return commentService.create(dto, userId);
     }
 
     @PatchMapping("/{commentId}")

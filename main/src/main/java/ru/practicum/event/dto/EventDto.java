@@ -8,6 +8,7 @@ import lombok.Setter;
 import ru.practicum.category.dto.CategoryDto;
 import ru.practicum.event.enums.EventState;
 import ru.practicum.user.dto.UserShortDto;
+import ru.practicum.utils.Pattern;
 
 import java.time.LocalDateTime;
 
@@ -20,16 +21,16 @@ public class EventDto {
     private String annotation;
     private CategoryDto category;
     private Long confirmedRequests;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
     private LocalDateTime createdOn;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
     private LocalDateTime eventDate;
     private UserShortDto initiator;
     private Location location;
     private Boolean paid;
     private Long participantLimit;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @JsonFormat(pattern = Pattern.DATETIME, shape = JsonFormat.Shape.STRING)
     private LocalDateTime publishedOn;
     private Boolean requestModeration;
     private EventState state;

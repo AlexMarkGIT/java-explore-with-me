@@ -21,6 +21,7 @@ import ru.practicum.exception.ConflictException;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.user.UserRepository;
 import ru.practicum.user.model.User;
+import ru.practicum.utils.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -218,7 +219,7 @@ public class EventServiceImpl implements EventService {
                         onlyAvailable,
                         PageRequest.of(from / size, size, Sort.by(sortString).descending()));
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATETIME);
 
         for (Event event : events) {
             String startTime = event.getCreatedOn().format(formatter);
@@ -245,7 +246,7 @@ public class EventServiceImpl implements EventService {
         Event event = eventRepository.findByIdAndState(eventId, EventState.PUBLISHED)
                 .orElseThrow(() -> new NotFoundException("такого события не существует"));
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATETIME);
 
         String startTime = event.getCreatedOn().format(formatter);
         String endTime = LocalDateTime.now().format(formatter);
@@ -269,7 +270,7 @@ public class EventServiceImpl implements EventService {
 
     private void sendStatsForOneEvent(Event event, HttpServletRequest request) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATETIME);
 
         HitDto hitDto = HitDto.builder()
                 .app("main-service")
@@ -287,7 +288,7 @@ public class EventServiceImpl implements EventService {
 
     private void sendStatsForEventList(List<Event> events, HttpServletRequest request) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(Pattern.DATETIME);
 
         HitDto hitDto = HitDto.builder()
                 .app("main-service")

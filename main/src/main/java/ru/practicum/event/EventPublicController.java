@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.event.dto.EventDto;
 import ru.practicum.event.enums.EventSort;
+import ru.practicum.utils.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -24,9 +25,9 @@ public class EventPublicController {
                                  @RequestParam(required = false) Long categories,
                                  @RequestParam(required = false) Boolean paid,
                                  @RequestParam(required = false)
-                                     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")LocalDateTime rangeStart,
+                                     @DateTimeFormat(pattern = Pattern.DATETIME)LocalDateTime rangeStart,
                                  @RequestParam(required = false)
-                                     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")LocalDateTime rangeEnd,
+                                     @DateTimeFormat(pattern = Pattern.DATETIME)LocalDateTime rangeEnd,
                                  @RequestParam(required = false) Boolean onlyAvailable,
                                  @RequestParam(required = false) EventSort sort,
                                  @RequestParam(required = false, defaultValue = "0") Integer from,
